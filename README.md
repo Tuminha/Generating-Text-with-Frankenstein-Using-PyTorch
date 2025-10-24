@@ -78,6 +78,27 @@ A trained LSTM that generates 500 characters of Gothic prose given a prompt like
 
 ---
 
+## 📝 Progress Log
+
+### ✅ Completed Notebooks
+
+#### Notebook 01 — Load & Slice ✅
+- **Status**: Complete
+- **Result**: Successfully loaded 6,850 characters from Letter 1
+- **Data**: *"You will rejoice to hear that no disaster has accompanied..."*
+
+#### Notebook 02 — Tokenization & Vocab ✅
+- **Status**: Complete
+- **Vocab Size**: 60 unique characters
+- **Includes**: Letters (A-Z, a-z), punctuation (`,` `.` `!` `?` `;` `:` `-` `—`), numbers, newlines, spaces
+- **Mappings**: Built `c2ix` (char→ID) and `ix2c` (ID→char)
+- **Result**: 6,850 tokens converted to IDs
+
+#### Notebook 03 — Dataset & DataLoader ⏳
+- **Status**: In Progress
+
+---
+
 ## 📊 Dataset / Disclaimer
 
 ### Source
