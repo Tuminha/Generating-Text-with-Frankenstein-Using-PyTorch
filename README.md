@@ -123,6 +123,12 @@ A trained LSTM that generates 500 characters of Gothic prose given a prompt like
   - Generated 2,000 characters with temperature sampling
   - Character-level accuracy evaluation on test prompts
 
+#### Notebook 99 — Lab Notes ✅
+- **Status**: Complete
+- **Content**: Comprehensive learning journal documenting all findings
+- **Key Sections**: Session logs, key concepts, results summary, experiments, insights, reflections
+- **Final Summary**: Complete project wrap-up with technical skills and ML principles learned
+
 ---
 
 ## 🔬 Experimental Findings
@@ -138,6 +144,22 @@ A trained LSTM that generates 500 characters of Gothic prose given a prompt like
 | **Learning Rate** | 0.015 | 0.003 |
 | **Training Time** | ~30 seconds | ~5-10 minutes |
 | **Final Loss** | ~1.7-2.1 | ~1.6-1.8 |
+| **Model Parameters** | 64,764 | 69,549 |
+
+### Accuracy Evaluation Results
+
+**Letter 1 Model on Letter 1 Prompts:**
+- Average Character Accuracy: **16.06%**
+- Test 1: 11.11% | Test 2: 6.02% | Test 3: 31.07%
+- Generate coherent Frankenstein-style text
+
+**Full Novel Model on Letter 1 Prompts:**
+- Average Character Accuracy: **7.49%**
+- Test 1: 3.51% | Test 2: 8.27% | Test 3: 10.68%
+- Lower accuracy due to train/test distribution mismatch
+- Better overall for diverse prompts from entire novel
+
+**Key Insight**: Character accuracy is misleading with temperature sampling. Both models generate coherent text, but different training data leads to different specializations.
 
 ### Temperature Sampling Comparison
 
@@ -153,10 +175,53 @@ A trained LSTM that generates 500 characters of Gothic prose given a prompt like
 
 ### Lessons Learned
 
-1. **Learning rate matters** - Larger datasets need lower learning rates
-2. **Vocab consistency** - Model vocab must match text vocab
+1. **Learning rate matters** - Larger datasets need lower learning rates (0.015 for 6K vs 0.003 for 438K)
+2. **Vocab consistency** - Model vocab must match text vocab or you get IndexError
 3. **Loss monitoring** - Increasing loss = divergence (reduce LR)
 4. **Temperature tuning** - Balance creativity (high T) vs coherence (low T)
+5. **Train/test distribution** - Evaluate on appropriate test set matching training distribution
+6. **Quality > Accuracy** - Generated text quality matters more than character-level metrics
+7. **More data doesn't always mean better task-specific accuracy** - Full novel model had lower accuracy on Letter 1 prompts but better overall generalization
+
+---
+
+## 🎯 Project Completion Summary
+
+### What Was Accomplished
+- ✅ Built complete character-level LSTM language model from scratch
+- ✅ Trained two models: Letter 1 (6,850 chars) and Full Novel (442K chars)
+- ✅ Implemented greedy and temperature sampling generation
+- ✅ Conducted comprehensive accuracy evaluation
+- ✅ Documented all findings in detailed lab notes
+
+### Models Trained
+1. **Letter 1 Model**: vocab_size=60, 64,764 parameters, loss→1.7
+2. **Full Novel Model**: vocab_size=93, 69,549 parameters, loss→1.29
+
+### Generated Text Samples
+- Letter 1 model: Reads naturally in Gothic style, some repetition after ~200 chars
+- Full novel model: More diverse vocabulary, less repetitive with temperature sampling
+- Both capture Frankenstein's archaic prose style effectively
+
+### Key Technical Achievements
+- Sliding window dataset implementation
+- LSTM architecture with embedding, gates, and linear projection
+- Learning rate tuning for different dataset sizes
+- Temperature sampling for text generation
+- Proper model saving/loading and evaluation
+
+### Insights Gained
+- Learning rate must scale with dataset size
+- Evaluation methodology crucial for fair model comparison
+- Temperature sampling essential for creative generation
+- Character-level accuracy misleading but text quality good
+- Building from scratch teaches WHY things work, not just HOW
+
+### Next Steps
+- Implement validation split (80/20) for overfitting detection
+- Experiment with beam search and top-k sampling
+- Apply learnings to Periospot AI dental text tasks
+- Explore word-level models for faster training
 
 ---
 
