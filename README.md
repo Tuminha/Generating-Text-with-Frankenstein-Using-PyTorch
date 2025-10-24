@@ -94,7 +94,21 @@ A trained LSTM that generates 500 characters of Gothic prose given a prompt like
 - **Mappings**: Built `c2ix` (char→ID) and `ix2c` (ID→char)
 - **Result**: 6,850 tokens converted to IDs
 
-#### Notebook 03 — Dataset & DataLoader ⏳
+#### Notebook 03 — Dataset & DataLoader ✅
+- **Status**: Complete
+- **Result**: Created TextDataset with sliding windows (6,802 samples)
+- **Shapes**: Single sample `[48]`, batch `[36, 48]`
+- **Features**: Implemented `__init__`, `__len__`, `__getitem__` with label shifting
+- **DataLoader**: Batch size 36, shuffle=True
+
+#### Notebook 04 — LSTM Model Architecture ✅
+- **Status**: Complete
+- **Architecture**: Embedding(60→48) → LSTM(48→96) → Linear(96→60)
+- **Parameters**: 64,764 total
+- **Forward Pass**: Verified shapes - Input `[36,48]` → Logits `[1728,60]`, States `[1,36,96]`
+- **Implemented**: `__init__`, `forward`, `init_state` methods
+
+#### Notebook 05 — Training Loop ⏳
 - **Status**: In Progress
 
 ---
