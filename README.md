@@ -108,8 +108,55 @@ A trained LSTM that generates 500 characters of Gothic prose given a prompt like
 - **Forward Pass**: Verified shapes - Input `[36,48]` → Logits `[1728,60]`, States `[1,36,96]`
 - **Implemented**: `__init__`, `forward`, `init_state` methods
 
-#### Notebook 05 — Training Loop ⏳
-- **Status**: In Progress
+#### Notebook 05 — Training Loop ✅
+- **Status**: Complete (Letter 1, 5 epochs)
+- **Loss Trend**: Decreased from ~2.8 to ~1.7-2.1
+- **Key Learning**: Learning rate critical for dataset size
+
+#### Notebook 06 — Text Generation ✅
+- **Status**: Complete (Experimental)
+- **Experiments**: Full novel training, temperature sampling, accuracy evaluation
+- **Key Findings**: 
+  - Full novel: 438K samples, vocab_size=93 (vs 60 for Letter 1)
+  - Learning rate tuning: lr=0.003 for full novel (vs 0.015 for Letter 1)
+  - Temperature sampling (T=0.8) adds creativity while maintaining coherence
+  - Generated 2,000 characters with temperature sampling
+  - Character-level accuracy evaluation on test prompts
+
+---
+
+## 🔬 Experimental Findings
+
+### Letter 1 vs Full Novel Training
+
+| Aspect | Letter 1 | Full Novel |
+|--------|-----------|------------|
+| **Characters** | 6,850 | ~442,000 |
+| **Vocab Size** | 60 | 93 |
+| **Training Samples** | 6,802 | 438,762 |
+| **Batches/Epoch** | ~189 | ~12,188 |
+| **Learning Rate** | 0.015 | 0.003 |
+| **Training Time** | ~30 seconds | ~5-10 minutes |
+| **Final Loss** | ~1.7-2.1 | ~1.6-1.8 |
+
+### Temperature Sampling Comparison
+
+**Greedy (argmax):**
+- Deterministic, most likely character
+- Can be repetitive
+- Good for consistent style
+
+**Temperature Sampling (T=0.8):**
+- Adds controlled randomness
+- More creative, less repetitive
+- Recommended for generation
+
+### Lessons Learned
+
+1. **Learning rate matters** - Larger datasets need lower learning rates
+2. **Vocab consistency** - Model vocab must match text vocab
+3. **Loss monitoring** - Increasing loss = divergence (reduce LR)
+4. **Temperature tuning** - Balance creativity (high T) vs coherence (low T)
 
 ---
 
